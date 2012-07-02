@@ -32,7 +32,7 @@ module Capybara
     end
 
     def host
-      Capybara.server_host || "127.0.0.1"
+      Capybara.server_host || "localhost"
     end
 
     def url(path)
@@ -60,7 +60,7 @@ module Capybara
         @port = Capybara::Server.ports[@app.object_id]
 
         if not @port or not responsive?
-          @port = Capybara.server_port || find_available_port
+          @port = Capybara.server_port || 3234
           Capybara::Server.ports[@app.object_id] = @port
 
           @server_thread = Thread.new do
